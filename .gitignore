@@ -1,0 +1,37 @@
+# --- Operating System Junk ---
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Logs & Debugging ---
+*.log
+npm-debug.log*
+
+# --- Security (Crucial) ---
+# Never commit environment variable files containing keys/passwords
+.env
+.env.local
+.env.*.local
+
+# --- Dependencies ---
+# If you eventually use Node.js/Tailwind CLI, keep these out of the repo
+node_modules/
+jspm_packages/
+
+# --- Build Outputs ---
+# If you use a build tool later, ignore the output folder
+dist/
+build/
+
+# --- IDE/Editor Settings ---
+# Personal editor configs (VS Code, JetBrains, etc.)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
