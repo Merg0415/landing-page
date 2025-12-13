@@ -200,12 +200,14 @@
                     <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-10 pointer-events-none"></div>
                     
                     <!-- Video Replacement -->
+                    <!-- UPDATED: Removed fixed height (h-64) and object-cover to prevent cutting off on mobile. 
+                         Added h-auto and w-full for responsive aspect ratio. -->
                     <video 
                         autoplay 
                         loop 
                         muted 
                         playsinline 
-                        class="w-full h-64 md:h-96 object-cover opacity-90"
+                        class="w-full h-auto object-contain opacity-90"
                     >
                         <source src="ubuntu.mp4" type="video/mp4">
                         Your browser does not support the video tag.
