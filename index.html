@@ -105,14 +105,17 @@
             background: #454952;
         }
         
+        /* Modern Reveal Animation with Blur & Scale */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(30px) scale(0.95);
+            filter: blur(10px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); /* Modern Ease-out */
         }
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            filter: blur(0);
         }
         
         /* Fallback Logo Styles if Image Fails */
@@ -247,7 +250,7 @@
 
     <!-- Trusted By -->
     <section class="py-12 border-y border-white/5 bg-white/[0.02]">
-        <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="max-w-7xl mx-auto px-6 text-center reveal">
             <p class="text-3xl md:text-4xl font-semibold text-white mb-8 tracking-tighter">Trusted by South Africa's Leading Financial Institutions</p>
             <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-50 hover:opacity-100 transition-opacity duration-500">
                 <!-- Client Names Added as Logotypes -->
@@ -361,7 +364,7 @@ From modern data platforms to advanced financial risk modelling, we bridge the g
 
     <!-- Footer -->
     <footer class="border-t border-white/5 bg-[#050505] pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-7xl mx-auto px-6 reveal">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
@@ -402,23 +405,28 @@ From modern data platforms to advanced financial risk modelling, we bridge the g
     <!-- Scroll Animation Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
-                const elementVisible = 100;
-
-                reveals.forEach((reveal) => {
-                    const elementTop = reveal.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveal.classList.add('active');
-                    }
-                });
+            // Modern Intersection Observer for better performance and smoother triggers
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
             };
 
-            window.addEventListener('scroll', revealOnScroll);
-            // Trigger once on load
-            revealOnScroll();
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        // Remove the class when element leaves view to allow re-animation
+                        entry.target.classList.remove('active');
+                    }
+                });
+            }, observerOptions);
+
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach((reveal) => {
+                observer.observe(reveal);
+            });
         });
     </script>
 </body>
