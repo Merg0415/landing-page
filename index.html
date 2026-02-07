@@ -122,8 +122,9 @@
         img:onerror {
             display: none;
         }
-        img[style*="display: none"] + .logo-fallback {
-            display: flex;
+        /* Fallback logic helper class - JS inline handler does the rest */
+        .show-fallback {
+            display: flex !important;
         }
     </style>
 </head>
@@ -134,6 +135,7 @@
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3 group cursor-pointer">
                 <!-- Replaced CSS logo with image file as requested -->
+                <!-- Note: 'show-fallback' class added via onerror script below if image fails -->
                 <img src="Ubuntu black logo.jpg" alt="" class="h-9 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="logo-fallback w-9 h-9 bg-gradient-to-tr from-[#2D9CDB] to-[#C0D72F] rounded-full items-center justify-center hidden">
                      <span class="text-[10px] font-mono font-bold text-white">UTS</span>
@@ -200,8 +202,7 @@
                     <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-10 pointer-events-none"></div>
                     
                     <!-- Video Replacement -->
-                    <!-- UPDATED: Removed fixed height (h-64) and object-cover to prevent cutting off on mobile. 
-                         Added h-auto and w-full for responsive aspect ratio. -->
+                    <!-- UPDATED: Replaced local 'ubuntu.mp4' with a placeholder tech video for preview purposes -->
                     <video 
                         autoplay 
                         loop 
@@ -209,14 +210,13 @@
                         playsinline 
                         class="w-full h-auto object-contain opacity-90"
                     >
-                        <source src="ubuntu.mp4" type="video/mp4">
+                        <!-- Using a tech placeholder video since local file is unavailable -->
+                        <source src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     
                     <!-- Gradient Fade to integrate with background -->
                     <div class="absolute inset-0 bg-gradient-to-t from-[#08090A] via-transparent to-transparent z-20 pointer-events-none"></div>
-                    
-                    <!-- Overlay Text/Stats Removed -->
                 </div>
             </div>
 
@@ -361,18 +361,8 @@ From modern data platforms to advanced financial risk modelling, we bridge the g
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#2D9CDB]/10"></div>
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
             <h2 class="text-4xl md:text-5xl font-semibold mb-8 tracking-tighter">Ready to move <span class="text-white">faster?</span></h2>
-            <p class="text-xl text-textMuted mb-10 max-w-2xl mx-auto">Join the high-performing companies redefining their businesses with Ubuntu Tech Solutions.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <!-- Animated Button converted to Link -->
-                <a href="contact.html" class="group relative px-8 py-3 bg-white text-black rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_40px_rgba(45,156,219,0.5)] active:scale-95 overflow-hidden inline-flex items-center justify-center">
-                    <span class="relative z-10 flex items-center gap-2">
-                        Schedule a Discovery Call
-                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </span>
-                    <!-- Shine Effect -->
-                    <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/50 to-transparent z-0"></div>
-                </a>
-            </div>
+            <p class="text-xl text-textMuted mb-8 max-w-2xl mx-auto">Join the high-performing companies redefining their businesses with Ubuntu Tech Solutions.</p>
+            <p class="text-xl text-textMuted">Contact us at: <a href="mailto:info@ubuntutechsolutions.co.za" class="text-white hover:text-[#2D9CDB] transition-colors">info@ubuntutechsolutions.co.za</a></p>
         </div>
     </section>
 
@@ -440,4 +430,3 @@ From modern data platforms to advanced financial risk modelling, we bridge the g
     </script>
 </body>
 </html>
-
